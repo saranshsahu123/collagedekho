@@ -12,11 +12,14 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url # Import karein
 # --- Consider using python-dotenv for security ---
 # import dotenv 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
 
 # --- Load environment variables if using dotenv ---
 # dotenv.load_dotenv(os.path.join(BASE_DIR, '.env'))
@@ -30,9 +33,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-nui!_94y58u9c2s87hah&$y-476*zim%4pp97!t_hwb(jr-18u' # Keep for now if needed
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True # Set to False in production
+# settings.py
+DEBUG = False # Production mein False rakhein
+ALLOWED_HOSTS = ['.onrender.com'] # Render ka domain
 
-ALLOWED_HOSTS = [] # Add your domain(s) in production
+# Kuch Recommended Security Settings (HTTPS ke liye)
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
 
 
 # Application definition
@@ -52,6 +60,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+'whitenoise.middleware.WhiteNoiseMiddleware', # Yahan add karein
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -85,12 +94,12 @@ WSGI_APPLICATION = 'college_finder.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        # Agar local mein SQLite use karna hai toh default set karein
+        default=f"sqlite:///{os.path.join(BASE_DIR, 'db.sqlite3')}",
+        conn_max_age=600 # Optional
+    )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -160,3 +169,24 @@ MANAGERS = ADMINS # Usually the same as ADMINS
 
 # --- Recommended: Set Default From Email if using SMTP ---
 # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER # Set this if using SMTP above
+
+
+# settings.py
+# ... STATIC_URL ke paas ...
+
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] # Aapka development static folder
+
+# Yahan par collectstatic files jama karega deployment ke liye
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# WhiteNoise ke liye Storage (Django 4.2+ ke liye)
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+# Agar Django 4.2 se purana hai toh yeh use karein:
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+SECRET_KEY = os.environ.get('SECRET_KEY', 'default-dev-key')
