@@ -1,0 +1,302 @@
+/* 1. Base Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafb; /* bg-gray-50 */
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Utility class for screen readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Utility class to hide elements */
+.hidden {
+    display: none;
+}
+
+
+/* 2. Navbar Styles */
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.navbar-container {
+    max-width: 80rem; /* max-w-7xl */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;  /* px-4 */
+    padding-right: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem; /* h-16 */
+}
+
+@media (min-width: 640px) {
+    .navbar-container {
+        padding-left: 1.5rem; /* sm:px-6 */
+        padding-right: 1.5rem;
+    }
+}
+@media (min-width: 1024px) {
+    .navbar-container {
+        padding-left: 2rem; /* lg:px-8 */
+        padding-right: 2rem;
+    }
+}
+
+/* 3. Logo */
+.navbar-logo a {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700; /* font-bold */
+    color: #4f46e5; /* text-indigo-600 */
+    text-decoration: none;
+}
+
+/* 4. Desktop Menu */
+.navbar-menu-desktop {
+    display: none; /* Hidden on mobile by default */
+}
+
+@media (min-width: 768px) {
+    .navbar-menu-desktop {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem; /* space-x-6 */
+    }
+}
+
+.navbar-link {
+    color: #4b5563; /* text-gray-600 */
+    padding: 0.5rem 0.75rem; /* px-3 py-2 */
+    border-radius: 0.375rem; /* rounded-md */
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500; /* font-medium */
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.navbar-link:hover {
+    color: #4f46e5; /* hover:text-indigo-600 */
+}
+
+/* 5. Desktop Search Bar */
+/* Hidden because search is now in the slider */
+.navbar-search-desktop {
+    display: none;
+}
+
+
+/* 6. Mobile Menu Toggle Button */
+.navbar-menu-toggle {
+    display: flex;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .navbar-menu-toggle {
+        display: none; /* Hide on desktop */
+    }
+}
+
+.navbar-menu-toggle button {
+    background-color: transparent;
+    border: none;
+    color: #6b7280; /* text-gray-500 */
+    padding: 0.5rem; /* p-2 */
+    border-radius: 0.375rem; /* rounded-md */
+    cursor: pointer;
+}
+
+.navbar-menu-toggle button:hover {
+    color: #1f2937; /* hover:text-gray-800 */
+}
+
+/* 7. Mobile Menu Dropdown */
+.navbar-menu-mobile {
+    background-color: #ffffff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-top: 1px solid #f3f4f6; /* border-gray-100 */
+}
+
+@media (min-width: 768px) {
+    .navbar-menu-mobile {
+        display: none; /* Hide on desktop */
+    }
+}
+
+.mobile-menu-container {
+    padding: 0.5rem 0.5rem 0.75rem 0.5rem; /* px-2 pt-2 pb-3 */
+}
+
+@media (min-width: 640px) {
+    .mobile-menu-container {
+        padding-left: 0.75rem; /* sm:px-3 */
+        padding-right: 0.75rem;
+    }
+}
+
+/* Hidden because search is now in the slider */
+.search-wrapper-mobile {
+    display: none;
+}
+
+.mobile-menu-link {
+    display: block;
+    color: #4b5563; /* text-gray-600 */
+    padding: 0.5rem 0.75rem; /* px-3 py-2 */
+    border-radius: 0.375rem; /* rounded-md */
+    font-size: 1rem; /* text-base */
+    font-weight: 500; /* font-medium */
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.mobile-menu-link:hover {
+    background-color: #f3f4f6; /* hover:bg-gray-100 */
+    color: #4f46e5; /* hover:text-indigo-600 */
+}
+
+
+/* 8. Image Slider Section */
+.image-slider-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0; /* Some vertical padding for smaller screens */
+    background-color: #f9fafb;
+}
+
+.image-slider-container {
+    position: relative;
+    width: 100%; /* Default for mobile */
+    max-width: 80vw; /* Limit for larger screens */
+    height: 40vh; /* Default height for mobile */
+    max-height: 70vh; /* Limit for larger screens */
+    overflow: hidden;
+    border-radius: 0.75rem; /* rounded-xl */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive adjustment for the 80vw and 70vh */
+@media (min-width: 768px) {
+    .image-slider-container {
+        height: 70vh; /* Apply 70vh on wider screens */
+        width: 80vw;
+    }
+}
+
+/* Slider Images */
+.slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slider-image.active {
+    opacity: 1;
+}
+
+/* Search Overlay */
+.slider-search-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+    color: #ffffff;
+    z-index: 10; /* Above images */
+    padding: 1rem; /* p-4 */
+    text-align: center;
+}
+
+.slider-headline {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: 0.5rem;
+}
+
+@media (min-width: 640px) {
+    .slider-headline {
+        font-size: 3rem; /* sm:text-5xl */
+    }
+}
+
+.slider-subheadline {
+    font-size: 1rem; /* text-base */
+    margin-bottom: 1.5rem;
+    max-width: 400px;
+}
+
+@media (min-width: 640px) {
+    .slider-subheadline {
+        font-size: 1.25rem; /* sm:text-xl */
+    }
+}
+
+.slider-search-bar {
+    display: flex;
+    width: 90%;
+    max-width: 500px;
+    background-color: #ffffff;
+    border-radius: 9999px; /* rounded-full */
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.slider-search-input {
+    flex-grow: 1;
+    border: none;
+    padding: 0.75rem 1.25rem; /* py-3 px-5 */
+    font-size: 1rem;
+    outline: none;
+    color: #1f2937;
+}
+
+.slider-search-input::placeholder {
+    color: #6b7280;
+}
+
+.slider-search-button {
+    background-color: #4f46e5; /* bg-indigo-600 */
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem; /* py-3 px-6 */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.slider-search-button:hover {
+    background-color: #4338ca; /* hover:bg-indigo-700 */
+}
+

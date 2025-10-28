@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    
+    <!-- 1. Link to the external CSS file -->
+    <link rel="stylesheet" href="index.css">
+    
+    <!-- 2. Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ============ NAVBAR START ============ -->
+    <nav class="navbar">
+        <!-- Main container -->
+        <div class="navbar-container">
+            
+            <!-- 1. Logo -->
+            <div class="navbar-logo">
+                <a href="#">SiteLogo</a>
+            </div>
+            
+            <!-- 2. Desktop Navigation Links -->
+            <div class="navbar-menu-desktop">
+                <a href="#" class="navbar-link">Courses</a>
+                <a href="#" class="navbar-link">Colleges</a>
+                <a href="#" class="navbar-link">Exams</a>
+                <a href="#" class="navbar-link">Jobs</a>
+                <a href="#" class="navbar-link">City</a>
+                <a href="#" class="navbar-link">About</a>
+            </div>
+
+            <!-- 3. Desktop Search Bar -->
+            <div class="navbar-search-desktop">
+                <div class="search-wrapper">
+                    <!-- Search Icon -->
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <!-- Input Field -->
+                    <input type="text" class="search-input" placeholder="Search courses, cities...">
+                </div>
+            </div>
+
+            <!-- 4. Mobile Menu Button -->
+            <div class="navbar-menu-toggle">
+                <button id="mobile-menu-button">
+                    <span class="sr-only">Open main menu</span>
+                    <!-- Hamburger Icon -->
+                    <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-open">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                    <!-- Close Icon (hidden by default) -->
+                    <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-close hidden">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- 5. Mobile Menu (Dropdown) - Hidden by default -->
+        <div id="mobile-menu-dropdown" class="navbar-menu-mobile hidden">
+            <div class="mobile-menu-container">
+                <!-- Mobile Search Bar -->
+                <div class="search-wrapper-mobile">
+                    <div class="search-wrapper">
+                        <!-- Search Icon -->
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <!-- Input Field -->
+                        <input type="text" class="search-input" placeholder="Search...">
+                    </div>
+                </div>
+                
+                <!-- Mobile Nav Links -->
+                <a href="#" class="mobile-menu-link">Courses</a>
+                <a href="#" class="mobile-menu-link">Colleges</a>
+                <a href="#" class="mobile-menu-link">Exams</a>
+                <a href="#" class="mobile-menu-link">Jobs</a>
+                <a href="#" class="mobile-menu-link">City</a>
+                <a href="#" class="mobile-menu-link">About</a>
+            </div>
+        </div>
+    </nav>
+    <!-- ============ NAVBAR END ============ -->
+
+    <main>
+        <!-- ============ HERO SECTION START ============ -->
+        <section class="hero">
+            <div class="hero-container">
+                <!-- Left Side: Content -->
+                <div class="hero-content">
+                    <h1 class="hero-headline">Find Your Path, Build Your Future</h1>
+                    <p class="hero-intro">
+                        Welcome to SiteLogo, your guide to navigating the world of higher education. We connect you with the best courses, colleges, and career opportunities to match your dreams.
+                    </p>
+                    <blockquote class="hero-quote">
+                        "Education is the most powerful weapon which you can use to change the world."
+                        <cite>- Nelson Mandela</cite>
+                    </blockquote>
+                    <p class="hero-wishes">
+                        We wish you the very best as you embark on this exciting journey. Your future is bright!
+                    </p>
+                    <a href="#courses" class="hero-cta-button">Explore Courses Now</a>
+                </div>
+                
+                <!-- Right Side: Image -->
+                <div class="hero-image">
+                    <img src="https://placehold.co/500x500/EBF4FF/4F46E5?text=Happy+Graduate+Student" 
+                         alt="A happy graduate student in front of a college campus"
+                         onerror="this.src='https://placehold.co/500x500/EBF4FF/4F46E5?text=Image+Not+Available'">
+                </div>
+            </div>
+        </section>
+        <!-- ============ HERO SECTION END ============ -->
+
+        <section class="image-slider-section">
+            <div class="image-slider-container">
+                
+                <!-- Search Bar Overlay -->
+                <div class="slider-search-overlay">
+                    <h2 class="slider-headline">Your Future Starts Here</h2>
+                    <p class="slider-subheadline">Find the perfect course, college, or career path.</p>
+                    <div class="slider-search-bar">
+                        <input type="text" placeholder="Search for courses, colleges, cities..." class="slider-search-input">
+                        <button class="slider-search-button">Search</button>
+                    </div>
+                </div>
+
+                <!-- Slider Images -->
+                <div class="slider">
+                    <img src="https://placehold.co/1200x700/EBF4FF/4F46E5?text=Inspiring+Campus+View" alt="Campus View 1" class="slider-image active">
+                    <img src="https://placehold.co/1200x700/E0E7FF/6366F1?text=Students+Collaborating" alt="Students Collaborating" class="slider-image">
+                    <img src="https://placehold.co/1200x700/D1D5DB/1F2937?text=Modern+Classroom" alt="Modern Classroom" class="slider-image">
+                    <img src="https://placehold.co/1200x700/D1FAE5/047857?text=Graduation+Success" alt="Graduation Success" class="slider-image">
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- ============ JAVASCRIPT FOR MOBILE MENU ============ -->
+    <script>
+        // Get DOM elements
+       // --- Navbar Mobile Menu Toggle ---
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu-dropdown');
+        const openIcon = document.getElementById('menu-icon-open');
+        const closeIcon = document.getElementById('menu-icon-close');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            openIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // --- Image Slider ---
+        const images = document.querySelectorAll('.slider-image');
+        let currentImageIndex = 0;
+
+        function showImage(index) {
+            // Hide all images
+            images.forEach((img, i) => {
+                img.classList.remove('active');
+                if (i === index) {
+                    img.classList.add('active');
+                }
+            });
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            showImage(currentImageIndex);
+        }
+
+        // Initialize slider
+        showImage(currentImageIndex);
+        // Change image every 5 seconds (5000ms)
+        setInterval(nextImage, 5000); 
+
+    </script>
+    <!-- ============ JAVASCRIPT END ============ -->
+    </script>
+
+</body>
+</html>
+
