@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ college.name }} - Details{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <section class="detail-header" style="padding: 0; overflow: hidden; border-radius: 8px;">
+        {% if college.image %}
+        <img src="{{ college.image.url }}" alt="{{ college.name }}" style="width: 100%; height: 350px; object-fit: cover; margin-bottom: -5px;">
+        {% endif %}
+        <div style="padding: 2rem;">
+            <h1>{{ college.name }}</h1>
+            <div class="detail-info">
+                <p><strong>Location:</strong> {{ college.city.name }}, {{ college.area|default:"N/A" }}</p>
+                <p><strong>Type:</strong> {{ college.get_college_type_display }}</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="college-info" style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem;">
+
+        <div style="flex: 2; min-width: 300px;">
+            <h2>About {{ college.name }}</h2>
+            <p style="font-size: 1.1rem;">{{ college.description|linebreaks|default:"No description has been added for this college yet." }}</p>
+        </div>
+
+        <aside style="flex: 1; min-width: 280px;">
+            <div style="background: var(--card-bg); padding: 1.5rem; border-radius: 8px; box-shadow: var(--shadow);">
+                <h3>Key Details</h3>
+                <ul class="college-card-info">
+                    <li><strong>Rank:</strong> {{ college.rank|default:"N/A" }}</li>
+                    <li><strong>Fees:</strong> ₹{{ college.fees_per_year }} Lakhs/Year</li>
+                </ul>
+
+                <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem;">Courses Offered</h4>
+                <ul class="college-card-info">
+                    {% for course in college.courses.all %}
+                        <li><a href="{% url 'course_detail' course.id %}">{{ course.name }}</a></li>
+                    {% empty %}
+                        <li>No courses listed.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </aside>
+
+    </section>
+</div>
+{% endblock %}

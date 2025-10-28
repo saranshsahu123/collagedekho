@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ course.name }} Courses & Colleges{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <section class="detail-header">
+        <h1>{{ course.name }}</h1>
+        <div class="detail-info">
+            <p><strong>Duration:</strong> {{ course.duration_in_years }}</p>
+            <p><strong>Average Fees:</strong> ₹{{ course.average_fees }} Lakhs</p>
+        </div>
+        {% if course.description %}
+            <p style="margin-top: 1rem; font-size: 1.1rem;">{{ course.description|linebreaks }}</p>
+        {% endif %}
+    </section>
+
+    <section class="college-list">
+        <h2 class="section-heading" style="text-align: left; margin-top: 1rem;">Colleges Offering {{ course.name }}</h2>
+        <div class="grid-container">
+            {% for college in colleges %}
+            <div class="college-card">
+                {% if college.image %}
+                <img src="{{ college.image.url }}" alt="{{ college.name }}" class="college-card-image">
+                {% else %}
+                <img src="https://via.placeholder.com/300x180/ccc/fff?text=College+Image" alt="{{ college.name }}" class="college-card-image">
+                {% endif %}
+
+                <div class="college-card-content">
+                    <span class="college-card-tag">{{ college.get_college_type_display }}</span>
+                    
+                    <h3><a href="{% url 'college_detail' college.id %}">{{ college.name }}</a></h3>
+                    
+                    <p class="college-card-location">{{ college.city.name }}, {{ college.area|default:"" }}</p>
+                    
+                    <ul class="college-card-info">
+                        <li>
+                            <strong>Rank:</strong>
+                            {% if college.rank %}
+                                {{ college.rank }}
+                                {% if college.rank_source %}
+                                    ({{ college.rank_source }})
+                                {% endif %}
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </li>
+                        <li><strong>Fees:</strong> ₹{{ college.fees_per_year }} Lakhs/Year</li>
+                    </ul>
+
+                    <div class="college-card-footer">
+                        <a href="{% url 'college_detail' college.id %}">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p style="grid-column: 1 / -1;">No colleges are currently listed for this course.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+</div>
+{% endblock %}

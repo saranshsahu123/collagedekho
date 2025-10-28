@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>{% block title %}College Finder{% endblock %}</title>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="{% url 'home' %}">CollegeFinder</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="{% url 'home' %}#courses">Courses</a></li>
+                <li><a href="{% url 'home' %}#cities">Cities</a></li>
+                </ul>
+            <div class="nav-auth">
+                {% if user.is_authenticated %}
+                    <span>Hi, {{ user.username }}!</span>
+                    <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-secondary">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
+                    <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <section class="course-box-container container">
+        <!-- <div class="course-box">
+            <h3 class="course-box-title">Explore Popular Courses</h3>
+            
+                {% for course in courses %} {# Assumes 'courses' context variable exists #}
+                <div style="--animation-order: {{ forloop.counter }};">
+                    <a href="{% url 'course_detail' course.id %}" class="course-list-item">
+                        {{ course.name }}
+                    </a>
+                </div>
+                {% empty %}
+                <div class="no-courses-message">
+                    <p>No courses available yet. Check back soon!</p>
+                </div>
+                {% endfor %}
+            </ul>
+        </div>
+    </section> -->
+
+    <main>
+        {% block content %}
+        {# The content from index.html (slider/hero, cities, top colleges) goes here #}
+        {% endblock %}
+    </main>
+
+    
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section footer-about">
+                <h3 class="footer-logo">CollegeFinder</h3>
+                <p>Your guide to discovering the best colleges and courses across India. We provide comprehensive data to help you shape your future career path.</p>
+            </div>
+            <div class="footer-section footer-courses">
+                <h4>CAREER PATHWAYS</h4>
+                {# Add the UL structure here #}
+                
+            </div>
+            <div class="footer-section footer-social">
+                <h4>CONNECT WITH US</h4>
+                <div class="social-icons">
+                    <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i> FB</a> {# Example using text if no FontAwesome #}
+                    <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i> IG</a>
+                    <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i> LI</a>
+                    <a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i> TW</a>
+                    <a href="#" target="_blank" title="YouTube"><i class="fab fa-youtube"></i> YT</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 College Finder. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'script.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+    <script src="{% static 'particles-config.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Colleges in {{ city.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <section class="detail-header">
+        <h1>Colleges in {{ city.name }}</h1>
+        <p>Find the best colleges and universities in {{ city.name }}.</p>
+    </section>
+
+    <section class="filter-bar">
+        <form method="GET" action="">
+            <label for="course_filter">Filter by Course:</label>
+            <select name="course_filter" id="course_filter">
+                <option value="">All Courses</option>
+                {% for course in all_courses %}
+                <option value="{{ course.id }}" {% if selected_course_id == course.id|stringformat:"s" %}selected{% endif %}>
+                    {{ course.name }}
+                </option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+    </section>
+
+    <section class="college-list">
+        <h2>Showing {{ colleges_in_city.count }} Colleges</h2>
+        <div class="grid-container">
+            {% for college in colleges_in_city %}
+            <div class="college-card">
+                {% if college.image %}
+                <img src="{{ college.image.url }}" alt="{{ college.name }}" class="college-card-image">
+                {% else %}
+                <img src="https://via.placeholder.com/300x180/ccc/fff?text=College+Image" alt="{{ college.name }}" class="college-card-image">
+                {% endif %}
+
+                <div class="college-card-content">
+                    <span class="college-card-tag">{{ college.get_college_type_display }}</span>
+                    <h3>{{ college.name }}</h3>
+                    <p class="college-card-location">{{ college.city.name }}, {{ college.area|default:"" }}</p>
+                    
+                    <ul class="college-card-info">
+                        <li><strong>Rank:</strong> {{ college.rank|default:"N/A" }}</li>
+                        <li><strong>Fees:</strong> ₹{{ college.fees_per_year }} Lakhs/Year</li>
+                    </ul>
+
+                    <div class="college-card-footer">
+                        <a href="{% url 'college_detail' college.id %}">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No colleges found matching your search.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+</div>
+{% endblock %}

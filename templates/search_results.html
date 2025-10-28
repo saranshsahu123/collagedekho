@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results for "{{ query }}"{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <section class="detail-header">
+        {% if query %}
+            <h1>Search Results</h1>
+            <p class="fs-5">Showing {{ colleges.count }} college{{ colleges.count|pluralize }} for <strong>"{{ query }}"</strong></p>
+        {% else %}
+            <h1>No search query entered</h1>
+            <p class="fs-5">Please go back and enter a search term.</p>
+        {% endif %}
+    </section>
+
+    <section class="college-list">
+        <div class="grid-container">
+            {% for college in colleges %}
+            <div class="college-card">
+                {% if college.image %}
+                <img src="{{ college.image.url }}" alt="{{ college.name }}" class="college-card-image">
+                {% else %}
+                <img src="https://via.placeholder.com/300x180/ccc/fff?text=College+Image" alt="{{ college.name }}" class="college-card-image">
+                {% endif %}
+
+                <div class="college-card-content">
+                    <span class="college-card-tag">{{ college.get_college_type_display }}</span>
+                    
+                    <h3><a href="{% url 'college_detail' college.id %}">{{ college.name }}</a></h3>
+                    
+                    <p class="college-card-location">{{ college.city.name }}, {{ college.area|default:"" }}</p>
+                    
+                    <ul class="college-card-info">
+                        <li><strong>Rank:</strong> {{ college.rank|default:"N/A" }}</li>
+                        <li><strong>Fees:</strong> ₹{{ college.fees_per_year }} Lakhs/Year</li>
+                    </ul>
+                </div>
+            </div>
+            {% empty %}
+                {% if query %}
+                    <p>No colleges found matching your search.</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+
+</div>
+{% endblock %}
